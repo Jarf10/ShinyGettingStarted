@@ -1,15 +1,17 @@
-#install.packages("ape")
-#install.packages("shiny")
-#install.packages("ggplot2")
-#install.packages("DT")
+# install.packages("ape")
+# install.packages("shiny")
+# install.packages("ggplot2")
+# install.packages("DT")
 
 library(ape)
 library(shiny)
 library(ggplot2)
 
+# d <- "ftp://ftp.ncbi.nlm.nih.gov/refseq/H_sapiens/annotation/GRCh38_latest/refseq_identifiers/"
+# f <- "GRCh38_latest_genomic.gff.gz"
+# download.file(paste0(d, f), "mt_gff3.gz")
+
 gff.mito <- read.gff("mt_gff3.gz")
-## the lengths of the sequence features:
-#gff.mito$end - (gff.mito$start - 1)
 genome <- DT::datatable(gff.mito)
 
 ui <- fluidPage(
@@ -36,17 +38,8 @@ server <- function(input, output) {
   # choose columns to display
   output$mytable1 <- DT::renderDataTable({
     DT::datatable(gff.mito[, input$show_vars, drop = FALSE])
-    #DT::datatable(genome[, input$show_vars, drop = FALSE])
   })
   
 }
 
 shinyApp(ui, server)
-
-
-#gff.mito <- read.gff("mt_gff3.gz")
-## the lengths of the sequence features:
-#gff.mito$end - (gff.mito$start - 1)
-#table(gff.mito$type)
-## where the exons start:
-#gff.mito$start[gff.mito$type == "exon"]
