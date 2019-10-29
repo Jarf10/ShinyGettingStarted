@@ -1,3 +1,4 @@
+##Install libraries if not installed yet
 # install.packages("ape")
 # install.packages("shiny")
 # install.packages("ggplot2")
@@ -7,6 +8,7 @@ library(ape)
 library(shiny)
 library(ggplot2)
 
+##If you do not have the file already the following code will do so
 # d <- "ftp://ftp.ncbi.nlm.nih.gov/refseq/H_sapiens/annotation/GRCh38_latest/refseq_identifiers/"
 # f <- "GRCh38_latest_genomic.gff.gz"
 # download.file(paste0(d, f), "mt_gff3.gz")
